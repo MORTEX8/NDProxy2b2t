@@ -129,15 +129,15 @@ public class Proxy {
     }
 
     public void start() {
-        DEFAULT_LOG.info("Starting ZenithProxy-{}", LAUNCH_CONFIG.version);
+        DEFAULT_LOG.info("Starting Proxy-{}", LAUNCH_CONFIG.version);
         @Nullable String exeReleaseVersion = getExecutableReleaseVersion();
         if (exeReleaseVersion == null) {
-            DEFAULT_LOG.warn("Detected unofficial ZenithProxy development build!");
+            DEFAULT_LOG.warn("Detected unofficial Proxy development build!");
         } else if (!LAUNCH_CONFIG.version.split("\\+")[0].equals(exeReleaseVersion.split("\\+")[0])) {
-            DEFAULT_LOG.warn("launch_config.json version: {} and embedded ZenithProxy version: {} do not match!", LAUNCH_CONFIG.version, exeReleaseVersion);
+            DEFAULT_LOG.warn("launch_config.json version: {} and embedded Proxy version: {} do not match!", LAUNCH_CONFIG.version, exeReleaseVersion);
             if (LAUNCH_CONFIG.auto_update)
                 DEFAULT_LOG.warn("AutoUpdater is enabled but will break!");
-            DEFAULT_LOG.warn("Use the official launcher: https://github.com/rfresh2/ZenithProxy/releases/tag/launcher-v3");
+            DEFAULT_LOG.warn("Use the official launcher: https://github.com/MORTEX8/NDProxy2b2t");
         }
         initEventHandlers();
         try {
@@ -203,7 +203,7 @@ public class Proxy {
                 DEFAULT_LOG.warn("Switch to a stable release with the `channel` command");
             }
             if (!connected) {
-                DEFAULT_LOG.info("Commands Help: https://github.com/rfresh2/ZenithProxy/wiki/Commands");
+                DEFAULT_LOG.info("Commands Help: null");
                 DEFAULT_LOG.info("Proxy IP: {}", CONFIG.server.getProxyAddress());
                 DEFAULT_LOG.info("Use the `connect` command to log in!");
             }
@@ -239,9 +239,9 @@ public class Proxy {
         EXECUTOR.schedule(() -> {
             if (server == null || !server.isListening()) {
                 var errorMessage = """
-                    The ZenithProxy MC server was unable to start correctly.
+                    The Proxy MC server was unable to start correctly.
                     
-                    Most likely you have two or more ZenithProxy instance running on the same configured port: %s.
+                    Most likely you have two or more Proxy instance running on the same configured port: %s.
                     
                     Shut down duplicate instances, or change the configured port: `serverConnection port <port>`
                     """.formatted(CONFIG.server.bind.port);
@@ -249,7 +249,7 @@ public class Proxy {
                 if (DISCORD.isRunning()) {
                     DISCORD.sendEmbedMessage(
                         Embed.builder()
-                            .title("ZenithProxy Server Error")
+                            .title("Proxy Server Error")
                             .description(errorMessage)
                             .errorColor());
                 }
@@ -276,7 +276,7 @@ public class Proxy {
                         """
                         Unable to ping the configured `proxyIP`: {}
                         
-                        If you are actually able to connect to ZenithProxy you can disable this test: `connectionTest testOnStart off`
+                        If you are actually able to connect to Proxy you can disable this test: `connectionTest testOnStart off`
                         
                         This test is most likely failing due to your firewall needing to be disabled. Or the configured Proxy IP is incorrect.
                         
@@ -615,14 +615,14 @@ public class Proxy {
                 }
                 if (DISCORD.isRunning()) {
                     if (CONFIG.discord.manageNickname)
-                        DISCORD.setBotNickname(CONFIG.authentication.username + " | ZenithProxy");
+                        DISCORD.setBotNickname(CONFIG.authentication.username + " | Proxy");
                     if (CONFIG.discord.manageDescription) DISCORD.setBotDescription(
                         """
-                        ZenithProxy %s
+                        Proxy %s
                         **Official Discord**:
-                          https://discord.gg/nJZrSaRKtb
+                          https://discord.gg/MysuH9V6fT
                         **Github**:
-                          https://github.com/rfresh2/ZenithProxy
+                          https://github.com/MORTEX8/NDProxy2b2t
                         """.formatted(LAUNCH_CONFIG.version));
                 }
             } catch (final Throwable e) {
@@ -705,7 +705,7 @@ public class Proxy {
                 CLIENT_LOG.warn("""
                                 You have likely been kicked for reaching the 2b2t non-prio account IP limit.
                                 Consider configuring a connection proxy with the `clientConnection` command.
-                                Or migrate ZenithProxy instances to multiple hosts/IP's.
+                                Or migrate Proxy instances to multiple hosts/IP's.
                                 """);
             } else if (event.wasInQueue() && event.queuePosition() <= 1) {
                 CLIENT_LOG.warn("""

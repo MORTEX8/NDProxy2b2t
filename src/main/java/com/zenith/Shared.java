@@ -207,12 +207,12 @@ public class Shared {
             Thread.setDefaultUncaughtExceptionHandler(
                 (thread, e) -> DEFAULT_LOG.error("Uncaught exception in thread {}", thread, e));
             EXECUTOR = Executors.newScheduledThreadPool(4, new ThreadFactoryBuilder()
-                .setNameFormat("ZenithProxy Scheduled Executor - #%d")
+                .setNameFormat("Proxy Scheduled Executor - #%d")
                 .setDaemon(true)
                 .build());
             DISCORD = new DiscordBot();
             EVENT_BUS = new SimpleEventBus(Executors.newFixedThreadPool(2, new ThreadFactoryBuilder()
-                .setNameFormat("ZenithProxy Async EventBus - #%d")
+                .setNameFormat("Proxy Async EventBus - #%d")
                 .setDaemon(true)
                 .build()), DEFAULT_LOG);
             DIMENSION_DATA = new DimensionDataManager();

@@ -140,8 +140,8 @@ public class DeathMessageParserTest {
 
     @Test
     public void pushedByMobTest() {
-        parseTest("LavamanHero fell to death after being pushed by Discount code Egg @ Rusherhack.org",
-                  "LavamanHero", null, null, "Discount code Egg @ Rusherhack.org");
+        parseTest("LavamanHero fell to death after being pushed by Discount code NRNR @ Rusherhack.org",
+                  "LavamanHero", null, null, "Discount code NRNR @ Rusherhack.org");
     }
 
     private void parseTest(final String rawInput, final String victim, final String killerName, final KillerType killerType, final String weapon) {
